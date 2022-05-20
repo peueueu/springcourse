@@ -1,0 +1,58 @@
+package guru.springframework.springwebapp.domain;
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String title;
+    private String ibsn;
+    @ManyToMany
+    @JoinTable(name="author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns =
+    @JoinColumn(name = "author_id"))
+    private Set<Author> authors;
+
+    public Book() {
+
+    }
+
+    public Book(String title, String ibsn) {
+        this.title = title;
+        this.ibsn = ibsn;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getIbsn() {
+        return ibsn;
+    }
+
+    public void setIbsn(String ibsn) {
+        this.ibsn = ibsn;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
+    }
+}
