@@ -1,10 +1,17 @@
 package guru.springframework.springwebapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,6 +24,7 @@ public class Publisher {
 
     @OneToMany
     @JoinColumn(name = "publisher_id")
+    @JsonIgnore
     private Set<Book> books = new HashSet<>();
 
     public Publisher() {

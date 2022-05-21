@@ -1,7 +1,9 @@
 package guru.springframework.springwebapp.repositories;
 
 import guru.springframework.springwebapp.domain.Author;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface AuthorRepository extends CrudRepository<Author, Long> {
+@Repository
+public interface AuthorRepository extends JpaRepository<Author, Long> {
 }
